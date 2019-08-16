@@ -1,0 +1,68 @@
+ <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a {% block nav_class1 %}{% endblock %} href="/index/"><i class="fa fa-dashboard"></i> 首页</a>
+                    </li>
+                    <li>
+                        <a {% block nav_class2 %}{% endblock %} href="/ui_elements/"><i class="fa fa-desktop"></i> 主机管理</a>
+                    </li>
+					<li>
+                        <a  {% block nav_class3 %}{% endblock %} href="#"><i class="fa fa-sitemap"></i> 远程管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="#">salt认证</a>
+                            </li>
+                            <li>
+                                <a href="#">远程管理</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a {% block nav_class4 %}{% endblock %} href="/tab_panel/"><i class="fa fa-qrcode"></i> 监控系统</a>
+                    </li>
+                    
+                    <li>
+                        <a {% block nav_class5 %}{% endblock %} href="/table/"><i class="fa fa-table"></i> 用户管理</a>
+                    </li>
+                    <li>
+                        <a {% block nav_class6 %}{% endblock %} href="/form/"><i class="fa fa-edit"></i> 命令行 </a>
+                    </li>
+
+
+                    <li>
+                        <a  {% block nav_class7 %}{% endblock %} href="#"><i class="fa fa-sitemap"></i> 多级菜单<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="#">Second Level Link</a>
+                            </li>
+                            <li>
+                                <a href="#">Second Level Link</a>
+                            </li>
+                            <li>
+                                <a href="#">Second Level Link<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#">Third Level Link</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Third Level Link</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Third Level Link</a>
+                                    </li>
+
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a  {% block nav_class8 %}{% endblock %} href="/empty/"><i class="fa fa-fw fa-file"></i> 退出</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>

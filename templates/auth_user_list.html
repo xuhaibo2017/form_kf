@@ -1,0 +1,73 @@
+{% extends "base-index.html" %}
+
+{% block title %}用户列表{% endblock %}
+{% block username %}{{ login_user.username }}{% endblock %}
+{% block base_class5 %}
+    class="active-menu"
+{% endblock %}
+
+{% block body_123 %}
+    <p><a href="{% url 'register'%}" class="btn btn-info btn-sm">注册用户</a></p>
+    <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+           <tr>
+              <th>ID</th>
+              <th>用户名</th>
+              <th>密码</th>
+              <th>邮箱</th>
+              <th>操作</th>
+           </tr>
+       </thead>
+        {% for user in user_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.password  }}</td>
+              <td>{{ user.email }}</td>
+              <td>
+                  {% ifequal login_user.is_superuser 1 %}
+                      <a href="{% url 'user_manage' id=user.id %}" class="btn btn-info btn-sm">编辑</a>
+                      {% ifequal user.username login_user.username %}
+                          <a href="/user/delete_user/?id={{ user.id }}&delete=1" style="color:white" class="btn btn-danger btn-sm" disabled="disabled" role="button">修改密码2</a>
+                      {% else %}
+                          <a href="/user/delete_user/?id={{ user.id }}&delete=1" style="color:white" class="btn btn-danger btn-sm"  role="button">删除</a>
+                      {% endifequal %}
+                  {% else %}
+                      {% ifequal user.username login_user.username %}
+                         <a href="{% url 'user_manage' id=user.id %}" class="btn btn-info btn-sm">编辑</a>
+                          <a href="/user/delete_user/?id={{ user.id }}&delete=1" style="color:white" class="btn btn-danger btn-sm" disabled="disabled" role="button">修改密码</a>
+                      {% else %}
+                          <a href="{% url 'user_manage' id=user.id %}" class="btn btn-info btn-sm" disabled="disabled">编辑</a>
+                      {% endifequal %}
+                      <a href="/user/delete_user/?id={{ user.id }}&delete=1" style="color:white" class="btn btn-danger btn-sm" disabled="disabled" role="button">删除</a>
+
+                  {% endifequal %}
+              </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+    <div class="row">
+{#        <div class="col-xs-6">#}
+{#           <div class="dataTables_info" id="example_info" role="alert" aria-live="polite" aria-relevant="all"></div>#}
+{#        </div>#}
+
+        <div style="text-align: center">
+          <div class="dataTables_paginate paging_simple_numbers " id="exmaple_paginate">
+
+               {% if user_list.has_previous %}
+                    <a href="?page={{ user_list.previous_page_number }}">上一页</a>
+               {% endif %}
+               <span class="current">
+                    第{{ user_list.number }}页，共{{ user_list.paginator.num_pages }}页
+               </span>
+               {% if user_list.has_next %}
+                    <a href="?page={{ user_list.next_page_number }}">下一页</a>
+               {% endif %}
+          </div>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "base-index.html" %}
+
+
+{% block title %}aqzm—index{% endblock %}
+
+{% block topmenu2 %}
+    <li><a href="#sum_id">TOP </a></li>
+    <li><a href="#con_mingxi">连接用户明细 </a></li>
+{% endblock %}
+
+{% block username %}{{ username }}{% endblock %}
+
+{% block base_class7_1 %}
+    class="active-menu"
+{% endblock %}
+{% block second_lev_c2 %}
+class="nav nav-second-level collapse in"
+{% endblock %}
+{% block body_123 %}
+
+    <section id="sum_id">
+
+        <div  class="row">
+
+        <div  class="col-md-3">
+
+            <p></p><p></p><p></p>
+
+            <h1 class="page-header">
+
+                安全桌面<small>数据汇总</small>
+
+            </h1>
+
+        </div>
+
+    </div>
+
+        <div class="row">
+
+        <div class="col-md-6 col-sm-6 col-xs-12" width="500" height="500">
+
+            <div id="main" width="100" height="800">
+
+                <p>今日日期{{ time1 }}</p>
+
+                <p><a  href=#>xinshi{{time1}}</a></p>
+
+                <p>共分配桌面数：{{sum_num|safe }}   今日连接数量：{{conn_num|safe}} </p>
+
+                <p><a href="{% url "aqzm" time1 %}">20190319</a> </p>
+
+                <p><a href="/aqzm/(%3FP{{time1}}%5Cd%7B8%7D)">today</a> </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </section>
+
+    <section id="con_mingxi">
+        <div id="chart4" class="row">
+                    <div class="col-md-12">
+                        <p></p><p></p><p></p><p></p>
+                        <h1 class="page-header">
+                            Chapter 4<small>入库历史</small>
+                        </h1>
+                     </div>
+                 </div>
+        <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+           <tr>
+              <th>ID</th>
+              <th>日期</th>
+              <th>操作</th>
+           </tr>
+       </thead>
+        {% for key in date_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+              <td>{{ key }}</td>
+              <td><a href="{% url 'aqzm' time1=key %}" class="btn btn-info btn-sm">查看详情</a></td>
+        </tr>
+        {% endfor %}
+        </table>
+    </section>
+
+
+{% endblock %}
+
+{% block body_js %}
+
+    <script src="/static/assets/js/Chart.js"></script>
+
+{% endblock %}

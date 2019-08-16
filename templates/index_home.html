@@ -1,0 +1,199 @@
+
+{% extends 'base-index.html' %}
+  {% block header_css %}
+      <script src="/static/assets/js/Chart.js"></script>
+  {% endblock %}
+{% block username %}{{ username }}he{{ testname }}{% endblock %}
+{% block base_class1 %}
+    class="active-menu"
+{% endblock %}
+  {% block base_class3_second %}
+  {% endblock %}
+  {% block body_123 %}
+
+          <div class="content_bottom">
+              <div class="col-md-12 span_3">
+		          <div class="bs-example1" data-example-id="contextual-table">
+		              <table class="table">
+                          <thead>
+		        <tr>
+		          <th>服务器资源信息</th>
+		          <th>资源</th>
+		          <th>Total</th>
+		          <th>free</th>
+		        </tr>
+		      </thead>
+		                  <tbody>
+		        <tr class="active">
+		          <th scope="row">1</th>
+		          <td>cpu(%)</td>
+		          <td>100%</td>
+		          <td>70%</td>
+		        </tr>
+		        <tr>
+		          <th scope="row">2</th>
+		          <td>内存</td>
+		          <td>10M</td>
+		          <td>10%</td>
+		        </tr>
+		        <tr class="success">
+		          <th scope="row">3</th>
+		          <td>磁盘</td>
+		          <td>30G</td>
+		          <td>5%</td>
+		        </tr>
+		        <tr>
+		          <th scope="row">4</th>
+		          <td>Swap</td>
+		          <td>1000M</td>
+		          <td>3%</td>
+		        </tr>
+		        <tr class="info">
+		          <th scope="row">应用程序</th>
+		          <td>service</td>
+		          <td>install</td>
+		          <td>status</td>
+		        </tr>
+		        <tr>
+		          <th scope="row">6</th>
+		          <td>httpd</td>
+		          <td>已安装</td>
+		          <td>未启动</td>
+		        </tr>
+		        <tr class="warning">
+		          <th scope="row">7</th>
+		          <td>mysql</td>
+		          <td>已安装</td>
+		          <td>启动成功</td>
+		        </tr>
+		        <tr>
+		          <th scope="row">8</th>
+		          <td>tomcat</td>
+		          <td>未安装</td>
+		          <td>未启动</td>
+		        </tr>
+		        <tr class="danger">
+		          <th scope="row">9</th>
+		          <td>sendmail</td>
+		          <td>已安装</td>
+		          <td>已启动</td>
+		        </tr>
+		      </tbody>
+                      </table>
+		          </div>
+	          </div>
+          </div>
+
+
+      <div id="page-inner">
+			 <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Charts <small>Show up your stats</small>
+                        </h1>
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+             <div class="row">
+                 <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Bar Chart
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="popChart" width="500" height="200"></canvas>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Bar Chart
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="myChart" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                 </div>
+             </div>
+                 <!-- /. ROW  -->
+
+                 <!-- /. ROW  -->
+      </div>
+             <!-- /. PAGE INNER  -->
+
+
+
+  {% endblock %}
+   <!-- <script src="static/assets/js/chart.min.js"></script>!-- >
+
+  {% block body_js %}
+      <script>
+    var popCanvas = document.getElementById("popChart");
+    var barChart = new Chart(popCanvas, {
+  type: 'bar',
+  data: {
+    labels: ["China", "India", "United States", "Indonesia", "Brazil", "Pakistan", "Nigeria", "Bangladesh", "Russia", "Japan"],
+    datasets: [{
+      label: 'Population',
+      data: [1379302771, 1281935911, 326625791, 260580739, 207353391, 204924861, 190632261, 157826578, 142257519, 126451398],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)',
+        'rgba(255, 159, 64, 0.6)',
+        'rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)'
+      ]
+    }]
+  }
+});
+</script>
+
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+      <script src="/static/assets/js/Chart.js"></script>
+      <script src="/static/assets/js/chart.min.js"></script>
+  {% endblock %}

@@ -1,0 +1,22 @@
+1/创建工程
+E:\>django-admin startproject js_oms
+
+E:\>cd js_oms
+
+E:\js_oms>django-admin startapp account
+
+E:\js_oms>django-admin startapp asset
+
+2/pymysql  在__init__.py中添加如下两行
+import pymysql
+
+pymysql.install_as_MySQLdb()
+
+3/setting 设置templates路径
+
+4/saltapi
+   验证saltapi是否生效
+   是否关闭防火墙（重要，否则程序超时无法响应）
+
+admin
+127.0.0.1/admin   用户： 密码：

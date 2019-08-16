@@ -1,0 +1,506 @@
+{% extends "base-index.html" %}
+
+
+{% block title %}aqzm{% endblock %}
+
+{% block topmenu2 %}
+
+    <li><a href="#sum_id">TOP </a></li>
+
+    <li><a href="#bar_id">桌面登陆柱形图  </a></li>
+
+    <li><a href="#mingxi">桌面登陆明细 </a></li>
+
+    <li><a href="#con_mingxi">连接用户明细 </a></li>
+
+    <li><a href="#discon_mingxi">未连接用户明细 </a></li>
+
+{% endblock %}
+
+{% block username %}{{ username }}{% endblock %}
+
+
+{% block base_class7 %}
+
+    class="active-menu"
+
+{% endblock %}
+{% block second_lev_c2 %}
+class="nav nav-second-level collapse in"
+{% endblock %}
+
+{% block body_123 %}
+
+    <section id="sum_id">
+
+        <div  class="row">
+
+        <div  class="col-md-3">
+
+            <p></p><p></p><p></p>
+
+            <h1 class="page-header">
+
+                Chapter 1<small>汇总</small>
+
+            </h1>
+
+        </div>
+
+    </div>
+
+        <div class="row">
+
+        <div class="col-md-6 col-sm-6 col-xs-12" width="500" height="500">
+
+            <div id="main" width="100" height="800">
+
+                <p>今日日期{{ time1 }}</p>
+
+                <p><a var abc={{time1}} href=#>xinshi{{time2}}</a></p>
+
+                <p>共分配桌面数：{{sum_num|safe }}   今日连接数量：{{conn_num|safe}} </p>
+
+                <p><a href="{% url "aqzm" time1 %}">20190319</a> </p>
+
+                <p><a href="/aqzm/(%3FP{{time1}}%5Cd%7B8%7D)">today</a> </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </section>
+
+    <section id="bar_id">
+
+        <div  class="row">
+
+                    <div class="col-md-9 col-sm-9 col-xs-9">
+
+                        <p></p><p></p><p></p><p></p>
+
+                        <h1 class="page-header">
+
+                            Chapter 2<small>桌面登陆柱形图</small>
+
+                        </h1>
+
+                    </div>
+
+                </div>
+
+        <div  class="row">
+
+                    <div class="col-md-9 col-sm-9 col-xs-9">
+
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading">
+
+                                桌面分配与登陆情况
+
+                            </div>
+
+                            <div class="panel-body">
+
+                                <canvas id="aqzm"  width="60" height="40">浏览器不支持canvas标签，请使用IE9以上版本浏览器</canvas>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+    </section>
+
+    <section id="mingxi">
+
+        <div  class="row">
+
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+
+                            <p></p><p></p><p></p><p></p>
+
+                            <h1 class="page-header">
+
+                                Chapter 3<small>桌面登陆明细</small>
+
+                            </h1>
+
+                        </div>
+
+        </div>
+
+        <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+        <thead>
+
+           <tr class="success">
+
+              <th scope="row">ID</th>
+
+               {% for key,value in dict_con.items %}
+
+              <td>{{ forloop.counter }}</td>
+
+              {% endfor %}
+
+           </tr>
+
+           <tr class="info">
+
+              <th scope="row">公司</th>
+
+              {% for key,value in dict_con.items %}
+
+              <td>{{ key }}</td>
+
+              {% endfor %}
+
+           </tr>
+
+           <tr class="warning">
+
+              <th scope="row">分配桌面数</th>
+
+              {% for key,value in dict_fu.items %}
+
+              <td>{{ value }}</td>
+
+              {% endfor %}
+
+           </tr>
+
+           <tr class="danger">
+
+              <th scope="row">用户连接</th>
+
+              {% for key,value in dict_con.items %}
+
+              <td>{{ value }}</td>
+
+              {% endfor %}
+
+           </tr>
+
+       </thead>
+
+    </table>
+
+    </section>
+
+    <section id="con_mingxi">
+
+        <div id="chart4" class="row">
+
+                    <div class="col-md-9 col-sm-9 col-xs-9">
+
+                        <p></p><p></p><p></p><p></p>
+
+                        <h1 class="page-header">
+
+                            Chapter 4<small>连接用户明细</small>
+
+                        </h1>
+
+                    </div>
+
+                </div>
+
+        <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+        <thead>
+
+           <tr>
+
+              <th>ID</th>
+
+              <th>公司</th>
+
+              <th>用户</th>
+
+           </tr>
+
+       </thead>
+
+        {% for key,value in info_dict.items %}
+
+        <tr>
+
+            <td>{{ forloop.counter }}</td>
+
+              <td>{{ key }}</td>
+
+              <td>{{ value }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    </section>
+
+    <section id="discon_mingxi">
+
+        <div id="chart5" class="row">
+
+                    <div class="col-md-9 col-sm-9 col-xs-9">
+
+                        <p></p><p></p><p></p><p></p>
+
+                        <h1 class="page-header">
+
+                            Chapter 5<small>未连接用户明细</small>
+
+                        </h1>
+
+                    </div>
+
+                </div>
+
+        <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+        <thead>
+
+           <tr>
+
+              <th>ID</th>
+
+              <th>公司</th>
+
+              <th>用户</th>
+
+           </tr>
+
+       </thead>
+
+        {% for key,value in info_dict2.items %}
+
+        <tr>
+
+            <td>{{ forloop.counter }}</td>
+
+              <td>{{ key }}</td>
+
+              <td>{{ value }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    </section>
+
+{% endblock %}
+
+{% block body_js %}
+
+    <script src="/static/assets/js/Chart.js"></script>
+
+    <script>
+
+var ctx = document.getElementById("aqzm").getContext('2d');
+ctx.width = 80
+ctx.height = 50
+var data1=[1,2,3]
+
+var testdata=['a','b','c','d','e']
+
+
+var lables=['1','2','3']
+
+var myChart = new Chart(ctx, {
+
+    type: 'bar',
+
+    data: {
+
+        labels: {{ list2|safe }},
+
+        datasets: [{
+
+            label: 'aaaaa',
+
+            data: {{ list3|safe }},
+
+            backgroundColor: [
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+                'DeepSkyBlue',
+
+            ],
+
+            borderColor: [
+
+                'rgba(255,99,132,1)',
+
+                'rgba(54, 162, 235, 1)',
+
+                'rgba(255, 206, 86, 1)',
+
+                'rgba(75, 192, 192, 1)',
+
+                'rgba(153, 102, 255, 1)',
+
+                'rgba(255, 159, 64, 1)'
+
+            ],
+
+            borderWidth: 1
+
+        },
+
+                {
+
+            label: "dddddd",
+
+            data: {{ list_c|safe }},
+
+            backgroundColor: [
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+'Aquamarine)',
+
+'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+                'Aquamarine)',
+
+            ],
+
+            borderWidth: 1
+
+        }
+
+        ]
+
+    },
+
+    options: {
+
+        scales: {
+
+            yAxes: [{
+
+                ticks: {
+
+                    beginAtZero:true
+
+                }
+
+            }]
+
+        }
+
+    }
+
+});
+
+</script>
+
+
+{% endblock %}

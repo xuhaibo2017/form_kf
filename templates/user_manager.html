@@ -1,0 +1,41 @@
+{% extends "user_list.html" %}
+{% block title %}{% endblock %}
+{% block username %}{{ login_user.username }}{% endblock %}
+{% block body_123 %}
+
+<form class="form-horizontal form-border" id="form" method="post" action=".">
+       {% csrf_token %}
+       <div class="form-group">
+             <label class="col-sm-3 control-label">用户名</label>
+             <div class="col-sm-6">
+             {{ form.username }}
+             {{ form.username.errors }}
+             </div>
+       </div>
+        {#  <div class="form-group"> #}
+        {#       <label class="col-sm-3 control-label">密码</label>#}
+        {#      <div class="col-sm-6">#}
+        {#       {{ form.password }} #}
+        {#      {{ form.password.errors }} #}
+        {#      </div> #}
+        {# </div>#}
+       <div class="form-group">
+             <label class="col-sm-3 control-label">邮箱</label>
+             <div class="col-sm-6">
+             {{ form.email }}
+             {{ form.email.errors }}
+             </div>
+        </div>
+       <div class="col-sm-offset-8 col-sm-10">
+             {#   {% ifequal action 'add' %}#}
+             {#     <button type="submit" class="btn btn-primary">添加</button>#}
+             {#  {% endifequal %} #}
+             {% ifequal action 'edit' %}
+                 <button type="submit" class="btn btn-primary" name="operate" value="update">更新</button>
+             {% endifequal %}
+       </div>
+
+</form>
+
+
+{% endblock %}

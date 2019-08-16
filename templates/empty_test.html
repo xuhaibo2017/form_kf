@@ -1,0 +1,206 @@
+{% extends "base-index.html" %}
+
+{% block title %}aqzm{% endblock %}
+{% block username %}{{ login_user.username }}{% endblock %}
+{% block base_class6 %}
+    class="active-menu"
+{% endblock %}
+{% block body_123 %}
+    <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Charts <small>服务器资源使用情况</small>
+                        </h1>
+                    </div>
+                </div>
+    <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12" width="500" height="300">
+                       <div id="main" style="width: 500px;height:300px;"></div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div id="mychart4" style="width: 500px;height:300px;"></div>
+                    </div>
+                </div>
+    <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Charts2 <small>Show up your stats</small>
+                        </h1>
+                    </div>
+                </div>
+    <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                服务器入库详情
+                            </div>
+                            <div class="panel-body">
+                                <canvas id="myChart" width="200" height="150"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            每日操作次数详情
+                        </div>
+                        <div class="panel-body">
+                            <canvas id="myChart2" width="200" height="150"></canvas>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+{% endblock %}
+{% block body_js %}
+    <script src="/static/assets/js/Chart.js"></script>
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var ret1={{ ret1 }}
+var ret1_1={{ ret1_1 }}
+var ret1_2={{ ret1_2 }}
+var data1=[ret1,ret1_1,ret1_2,10]
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["服务器数量", "已装机","待装机"],
+        datasets: [{
+            label: '总览',
+            data: data1,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+    <script>
+var ctx = document.getElementById("myChart2").getContext('2d');
+var ret_mes1={{ ret_mes1 }}
+var ret_mes2={{ ret_mes2 }}
+var ret_mes3={{ ret_mes3 }}
+var ret_mes4={{ ret_mes4 }}
+var ret_mes5={{ ret_mes5 }}
+var data1=[ret_mes1,ret_mes2,ret_mes3,ret_mes4,ret_mes5]
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["{{ time_today }}","{{ time_ye1 }}","{{ time_ye2 }}","{{ time_ye3 }}","{{ time_ye4 }}"],
+        datasets: [{
+            label: '总览',
+            data: data1,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+    <!-- Bootstrap Js -->
+    <script src="/static/assets/js/echarts.js"></script>
+	<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart3 = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+                        tooltip : {
+                        formatter: "{a} <br/>{b} : {c}%"
+                            },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            restore : {show: false},
+            saveAsImage : {show: false}
+        }
+    },
+    series : [
+        {
+            name:'业务指标',
+            type:'gauge',
+            detail : {formatter:'{value}%'},
+            data:[{value: {{ cpu }}, name: 'cpu'}]
+        }
+    ]
+};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart3.setOption(option);
+    </script>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart4 = echarts.init(document.getElementById('mychart4'));
+
+        // 指定图表的配置项和数据
+        var option = {
+                        tooltip : {
+                        formatter: "{a} <br/>{b} : {c}%"
+                            },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            restore : {show: false},
+            saveAsImage : {show: false}
+        }
+    },
+    series : [
+        {
+            name:'业务指标',
+            type:'gauge',
+            detail : {formatter:'{value}%'},
+            data:[{value: {{ memory }}, name: 'memory'}]
+        }
+    ]
+};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart4.setOption(option);
+    </script>
+{% endblock %}

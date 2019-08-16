@@ -1,0 +1,50 @@
+{% extends "index_home.html" %}
+{% block title %}批量管理{% endblock %}
+{% block username %}{{ username }}{% endblock %}
+{% block second_lev_c1 %}
+class="nav nav-second-level collapse in"
+{% endblock %}
+
+{% block body_123 %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form class="form-horizontal form-border" method="post" enctype="multipart/form-data"
+                          action="/deploy/targeting_execution/?action=exec">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">目标主机</label>
+
+                            <div class="col-sm-6">
+                                <textarea type="text" class="form-control" readonly>请查看192.168.1.120:/etc/salt/roster文件</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">远程命令</label>
+
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="arg" value={{ arg }}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-8 col-sm-10">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">返回结果</label>
+
+                            <div class="col-sm-6">
+                                <textarea class="form-control" rows="15">{{ ret }}</textarea>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--row end-->
+
+{% endblock %}
